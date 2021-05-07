@@ -1,0 +1,16 @@
+C:\Users\Usuario\Documents\Facultad\3° año\Diseño de Sistemas\Trabajos practicos\TP-4_BorselliMartin8\TP-4_BorselliMartin8\obj\Debug\net5.0\TP-4_BorselliMartin8.csprojAssemblyReference.cache
+C:\Users\Usuario\Documents\Facultad\3° año\Diseño de Sistemas\Trabajos practicos\TP-4_BorselliMartin8\TP-4_BorselliMartin8\obj\Debug\net5.0\TP-4_BorselliMartin8.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Documents\Facultad\3° año\Diseño de Sistemas\Trabajos practicos\TP-4_BorselliMartin8\TP-4_BorselliMartin8\obj\Debug\net5.0\TP-4_BorselliMartin8.AssemblyInfoInputs.cache
+C:\Users\Usuario\Documents\Facultad\3° año\Diseño de Sistemas\Trabajos practicos\TP-4_BorselliMartin8\TP-4_BorselliMartin8\obj\Debug\net5.0\TP-4_BorselliMartin8.AssemblyInfo.cs
+C:\Users\Usuario\Documents\Facultad\3° año\Diseño de Sistemas\Trabajos practicos\TP-4_BorselliMartin8\TP-4_BorselliMartin8\obj\Debug\net5.0\TP-4_BorselliMartin8.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\Facultad\3° año\Diseño de Sistemas\Trabajos practicos\TP-4_BorselliMartin8\TP-4_BorselliMartin8\bin\Debug\net5.0\TP-4_BorselliMartin8.exe
+C:\Users\Usuario\Documents\Facultad\3° año\Diseño de Sistemas\Trabajos practicos\TP-4_BorselliMartin8\TP-4_BorselliMartin8\bin\Debug\net5.0\TP-4_BorselliMartin8.deps.json
+C:\Users\Usuario\Documents\Facultad\3° año\Diseño de Sistemas\Trabajos practicos\TP-4_BorselliMartin8\TP-4_BorselliMartin8\bin\Debug\net5.0\TP-4_BorselliMartin8.runtimeconfig.json
+C:\Users\Usuario\Documents\Facultad\3° año\Diseño de Sistemas\Trabajos practicos\TP-4_BorselliMartin8\TP-4_BorselliMartin8\bin\Debug\net5.0\TP-4_BorselliMartin8.runtimeconfig.dev.json
+C:\Users\Usuario\Documents\Facultad\3° año\Diseño de Sistemas\Trabajos practicos\TP-4_BorselliMartin8\TP-4_BorselliMartin8\bin\Debug\net5.0\TP-4_BorselliMartin8.dll
+C:\Users\Usuario\Documents\Facultad\3° año\Diseño de Sistemas\Trabajos practicos\TP-4_BorselliMartin8\TP-4_BorselliMartin8\bin\Debug\net5.0\ref\TP-4_BorselliMartin8.dll
+C:\Users\Usuario\Documents\Facultad\3° año\Diseño de Sistemas\Trabajos practicos\TP-4_BorselliMartin8\TP-4_BorselliMartin8\bin\Debug\net5.0\TP-4_BorselliMartin8.pdb
+C:\Users\Usuario\Documents\Facultad\3° año\Diseño de Sistemas\Trabajos practicos\TP-4_BorselliMartin8\TP-4_BorselliMartin8\obj\Debug\net5.0\TP-4_BorselliMartin8.dll
+C:\Users\Usuario\Documents\Facultad\3° año\Diseño de Sistemas\Trabajos practicos\TP-4_BorselliMartin8\TP-4_BorselliMartin8\obj\Debug\net5.0\ref\TP-4_BorselliMartin8.dll
+C:\Users\Usuario\Documents\Facultad\3° año\Diseño de Sistemas\Trabajos practicos\TP-4_BorselliMartin8\TP-4_BorselliMartin8\obj\Debug\net5.0\TP-4_BorselliMartin8.pdb
+C:\Users\Usuario\Documents\Facultad\3° año\Diseño de Sistemas\Trabajos practicos\TP-4_BorselliMartin8\TP-4_BorselliMartin8\obj\Debug\net5.0\TP-4_BorselliMartin8.genruntimeconfig.cache

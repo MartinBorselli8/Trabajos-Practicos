@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Usuario\\Documents\\Facultad\\3° año\\Diseño de Sistemas\\Trabajos practicos\\TP-4_BorselliMartin8\\TP-4_BorselliMartin8\\TP-4_BorselliMartin8.csproj",
+      "projectUniqueName": "C:\\Users\\Usuario\\Documents\\GitHub\\Trabajos-Practicos\\TP-4\\TP-4_BorselliMartin8\\TP-4_BorselliMartin8.csproj",
       "projectName": "TP-4_BorselliMartin8",
-      "projectPath": "C:\\Users\\Usuario\\Documents\\Facultad\\3° año\\Diseño de Sistemas\\Trabajos practicos\\TP-4_BorselliMartin8\\TP-4_BorselliMartin8\\TP-4_BorselliMartin8.csproj",
+      "projectPath": "C:\\Users\\Usuario\\Documents\\GitHub\\Trabajos-Practicos\\TP-4\\TP-4_BorselliMartin8\\TP-4_BorselliMartin8.csproj",
       "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Usuario\\Documents\\Facultad\\3° año\\Diseño de Sistemas\\Trabajos practicos\\TP-4_BorselliMartin8\\TP-4_BorselliMartin8\\obj\\",
+      "outputPath": "C:\\Users\\Usuario\\Documents\\GitHub\\Trabajos-Practicos\\TP-4\\TP-4_BorselliMartin8\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

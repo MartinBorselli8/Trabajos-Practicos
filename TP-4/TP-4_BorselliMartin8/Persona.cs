@@ -13,6 +13,8 @@ namespace TP_4_BorselliMartin8
         private string domicilio;
         private string telefono;
         private string eMail;
+        private DateTime fechaDesde;
+        private DateTime fechaHasta;
         private Actividad actividadRealizada;
 
         public string NombreApellido { get => nombreApellido; set => nombreApellido = value; }
@@ -21,7 +23,8 @@ namespace TP_4_BorselliMartin8
         public string Telefono { get => telefono; set => telefono = value; }
         public string EMail { get => eMail; set => eMail = value; }
         public Actividad ActividadRealizada { get => actividadRealizada; set => actividadRealizada = value; }
-
+        public DateTime FechaDesde { get => fechaDesde; set => fechaDesde = value; }
+        public DateTime FechaHasta { get => fechaHasta; set => fechaHasta = value; }
 
         public void Datos()
         {
@@ -31,6 +34,10 @@ namespace TP_4_BorselliMartin8
             Console.WriteLine("eMail: " + EMail);
             Console.WriteLine("Telefono: " + Telefono);
             Console.WriteLine("Actividad que realiza: " + actividadRealizada.getNombre());
+            Console.WriteLine("Autorizado desde: " + FechaDesde);
+            Console.WriteLine("Autorizado hasta: " + FechaHasta);
+            Console.WriteLine("\n\n");
+
         }
     }
 }

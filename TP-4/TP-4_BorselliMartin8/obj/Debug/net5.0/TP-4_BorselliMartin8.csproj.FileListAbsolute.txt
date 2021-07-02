@@ -30,3 +30,11 @@ C:\Users\Usuario\Documents\GitHub\Trabajos-Practicos\TP-4\TP-4_BorselliMartin8\o
 C:\Users\Usuario\Documents\GitHub\Trabajos-Practicos\TP-4\TP-4_BorselliMartin8\obj\Debug\net5.0\ref\TP-4_BorselliMartin8.dll
 C:\Users\Usuario\Documents\GitHub\Trabajos-Practicos\TP-4\TP-4_BorselliMartin8\obj\Debug\net5.0\TP-4_BorselliMartin8.pdb
 C:\Users\Usuario\Documents\GitHub\Trabajos-Practicos\TP-4\TP-4_BorselliMartin8\obj\Debug\net5.0\TP-4_BorselliMartin8.genruntimeconfig.cache
+C:\Users\Usuario\Documents\GitHub\Trabajos-Practicos\TP-4\TP-4_BorselliMartin8\bin\Debug\net5.0\Gma.QrCodeNet.Encoding.dll
+C:\Users\Usuario\Documents\GitHub\Trabajos-Practicos\TP-4\TP-4_BorselliMartin8\obj\Debug\net5.0\TP-4_BorselliMartin8.csproj.CopyComplete
+C:\Users\Usuario\Documents\GitHub\Trabajos-Practicos\TP-4\TP-4_BorselliMartin8\bin\Debug\net5.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Usuario\Documents\GitHub\Trabajos-Practicos\TP-4\TP-4_BorselliMartin8\bin\Debug\net5.0\System.Drawing.Common.dll
+C:\Users\Usuario\Documents\GitHub\Trabajos-Practicos\TP-4\TP-4_BorselliMartin8\bin\Debug\net5.0\zxing.dll
+C:\Users\Usuario\Documents\GitHub\Trabajos-Practicos\TP-4\TP-4_BorselliMartin8\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Usuario\Documents\GitHub\Trabajos-Practicos\TP-4\TP-4_BorselliMartin8\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\Usuario\Documents\GitHub\Trabajos-Practicos\TP-4\TP-4_BorselliMartin8\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll

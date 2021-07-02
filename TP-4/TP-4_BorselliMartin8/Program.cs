@@ -1,17 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZXing;
+
+
 
 namespace TP_4_BorselliMartin8
 {
     class Program
     {
+        
+
         static void Main(string[] args)
         {
             int op;
-
+            string dni;
 
             InstaciasPrevias();
 
@@ -24,6 +31,8 @@ namespace TP_4_BorselliMartin8
             Console.WriteLine("Registrar Empresa ------ 3");
             Console.WriteLine("Dar de alta a un empleado ------ 4");
             Console.WriteLine("Dar de baja una persona ------ 5");
+            Console.WriteLine("Registrar salida ------ 6");
+            
 
             op = Convert.ToInt32(Console.ReadLine());
 
@@ -44,6 +53,10 @@ namespace TP_4_BorselliMartin8
                 case 5:
                     RegistrarBajaPersona();
                     break;
+                case 6:
+                    RegistrarSalida();
+                    break;
+             
             }
             static void InstaciasPrevias()
             {
@@ -66,8 +79,9 @@ namespace TP_4_BorselliMartin8
                 persona1.Telefono = "3564-131419";
                 persona1.ActividadRealizada = actividad3;
                 persona1.FechaDesde = new DateTime(2021, 01, 15);
-                persona1.FechaHasta = new DateTime(2021, 05, 15);
-
+                persona1.FechaHasta = new DateTime(2021, 10, 15);
+                
+                generarQR(persona1);
 
                 Persona persona2 = new Persona();
                 persona2.Dni = "17800971";
@@ -78,6 +92,8 @@ namespace TP_4_BorselliMartin8
                 persona2.ActividadRealizada = actividad1;
                 persona2.FechaDesde = new DateTime(2021, 04, 20);
                 persona2.FechaHasta = new DateTime(2021, 10, 20);
+                
+                generarQR(persona2);
 
                 Persona persona3 = new Persona();
                 persona3.Dni = "13425032";
@@ -88,6 +104,8 @@ namespace TP_4_BorselliMartin8
                 persona3.ActividadRealizada = actividad3;
                 persona3.FechaDesde = new DateTime(2021, 03, 03);
                 persona3.FechaHasta = new DateTime(2021, 09, 03);
+               
+                generarQR(persona3);
 
                 Persona persona4 = new Persona();
                 persona4.Dni = "16731823";
@@ -98,6 +116,8 @@ namespace TP_4_BorselliMartin8
                 persona4.ActividadRealizada = actividad3;
                 persona4.FechaDesde = new DateTime(2021, 03, 03);
                 persona4.FechaHasta = new DateTime(2021, 09, 03);
+               
+                generarQR(persona4);
 
                 RepositorioPersonas.agregarPersona(persona1);
                 RepositorioPersonas.agregarPersona(persona2);
@@ -135,7 +155,7 @@ namespace TP_4_BorselliMartin8
             static void RegistrarPersona()
             {
                 int cont = 1, act;
-                string fechadesde, fechahasta;
+                string fechadesde, fechahasta, opcion;
                 DateTime fdesde, fhasta;
 
                 Persona personaN = new Persona();
@@ -153,12 +173,12 @@ namespace TP_4_BorselliMartin8
                 fechadesde = Console.ReadLine();
                 DateTime.TryParse(fechadesde, out fdesde);
                 personaN.FechaDesde = fdesde;
-
                 Console.WriteLine("Ingrese la fecha hasta: (AAAA, MM, DD");
                 fechahasta = Console.ReadLine();
                 DateTime.TryParse(fechahasta, out fhasta);
                 personaN.FechaDesde = fhasta;
 
+               
                 Console.WriteLine("Seleccione una de las actividades autorizadas: ");
 
                 foreach (Actividad i in RepositorioActividades.ListadoActividades1)
@@ -187,42 +207,73 @@ namespace TP_4_BorselliMartin8
                     }
                     cont++;
                 }
+                
+                generarQR(personaN);
                 RepositorioPersonas.agregarPersona(personaN);
                 Console.WriteLine("Persona Registrada correctamente");
+                
             }
 
             static void AutorizarIngreso()
             {
-                String DniAutorizacion;
+                string DniAutorizacion;
+                char opcion;
                 int ban;
-                Persona personaAutorizacion = null;
+                
 
                 Console.WriteLine("Ingrese el DNI: ");
                 DniAutorizacion = Console.ReadLine();
                 ban = 0;
-
+                Ingreso ingresoNuevo = new Ingreso();
                 foreach (Persona p in RepositorioPersonas.ListadoPersonas1)
                 {
                     if (p.Dni == DniAutorizacion)
                     {
-                        if (p.FechaDesde < DateTime.Now && DateTime.Now < p.FechaHasta)
+                        
+                        Console.WriteLine("Ingrese la temperatura corporal de la persona: ");
+                        ingresoNuevo.TemperaturaCorporal1 = Convert.ToDouble(Console.ReadLine());
+                        
+                        if (ingresoNuevo.TemperaturaCorporal1 <= 37)
                         {
-                            ban = 1;
-                            personaAutorizacion = p;
-                        }
+                            if (p.FechaDesde < DateTime.Now && DateTime.Now < p.FechaHasta)
+                            {
+                                ban = 1;
+                                
+                                ingresoNuevo.PersonaIngresante = p;
+                            }
 
+                        }
+                        else
+                        {
+                            Console.WriteLine("ATENCION, LA PERSONA TIENE MAS DE 37°C, NO TIENE PERMISO A INGRESAR.");
+                        }
                     }
+                    
                 }
                 if (ban == 1)
                 {
                     Console.WriteLine("\n");
-                    personaAutorizacion.Datos();
+                    ingresoNuevo.FechaIngreso = DateTime.Now;
+                    Console.WriteLine("¿La persona esta por ingresar en un vehiculo? (S / N) ");
+                    opcion = Convert.ToChar(Console.ReadLine());
+
+                    if (opcion == 'S' || opcion == 's')
+                    {
+                        Console.WriteLine("Ingrese la patente del vehiculo: ");
+                        ingresoNuevo.PatenteAuto = Console.ReadLine();
+                    }
+
+                    Console.WriteLine("Ingrese el destino al que se dirije: ");
+                    ingresoNuevo.Destino1 = Console.ReadLine();
+                    Persona.agregarIngreso(ingresoNuevo, ingresoNuevo.PersonaIngresante);
+
+                    ingresoNuevo.Datos();
 
                     Console.WriteLine("\n\nESTA AUTORIZADO/A PARA CIRCULAR.");
                 }
                 else
                 {
-                    Console.WriteLine("La persona no esta autorizada o bien no se encuentra registrada");
+                    Console.WriteLine("\n\nLa persona no esta autorizada o bien no se encuentra registrada.");
                 }
             }
 
@@ -319,6 +370,40 @@ namespace TP_4_BorselliMartin8
                 }
             }
 
+            static void RegistrarSalida()
+            {
+                string dni;
+                Console.WriteLine("Ingrese el DNI: ");
+                dni = Console.ReadLine();
+                Egreso egresonuevo = new Egreso();
+                foreach (Persona p in RepositorioPersonas.ListadoPersonas1)
+                {
+                    if (p.Dni == dni)
+                    {
+                        egresonuevo.FechaEgreso = DateTime.Now;
+                        egresonuevo.Persona1 = p;
+                        Console.WriteLine("La persona " + egresonuevo.Persona1.NombreApellido + " se retiro de la zona el dia " + egresonuevo.FechaEgreso.ToString());
+                    }
+                }
+            }
+
+            static void generarQR(Persona personaqr)
+            {
+                
+                BarcodeWriter qrcodeWriter = new BarcodeWriter();
+
+                qrcodeWriter.Format = BarcodeFormat.QR_CODE;
+
+                qrcodeWriter.Write(personaqr.NombreApellido + " Esta Autorizado para circular")
+                            .Save(@"C:\Users\Usuario\Desktop\" + personaqr.NombreApellido + ".bmp");
+                personaqr.QrAcceso = qrcodeWriter;
+                
+                
+            }
+
+            
+            
+            
         }
     }
 }

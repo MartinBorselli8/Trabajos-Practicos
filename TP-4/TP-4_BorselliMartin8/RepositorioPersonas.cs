@@ -14,7 +14,7 @@ namespace TP_4_BorselliMartin8
 
         public static void agregarPersona(Persona nueva)
         {
-            ListadoPersonas.Add(nueva);
+            ListadoPersonas1.Add(nueva);
         }
     }
 }

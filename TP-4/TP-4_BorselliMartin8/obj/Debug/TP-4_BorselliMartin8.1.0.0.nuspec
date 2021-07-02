@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>TP-4_BorselliMartin8</id>
+    <version>1.0.0</version>
+    <authors>TP-4_BorselliMartin8</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework="net5.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\Usuario\Documents\GitHub\Trabajos-Practicos\TP-4\TP-4_BorselliMartin8\bin\Debug\net5.0\TP-4_BorselliMartin8.runtimeconfig.json" target="lib\net5.0\TP-4_BorselliMartin8.runtimeconfig.json" />
+    <file src="C:\Users\Usuario\Documents\GitHub\Trabajos-Practicos\TP-4\TP-4_BorselliMartin8\bin\Debug\net5.0\TP-4_BorselliMartin8.dll" target="lib\net5.0\TP-4_BorselliMartin8.dll" />
+  </files>
+</package>

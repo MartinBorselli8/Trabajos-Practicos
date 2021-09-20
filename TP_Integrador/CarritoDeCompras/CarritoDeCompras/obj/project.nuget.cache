@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "iGGUFAIp/iekJZrK/giJ2CPcNjcTAEVdjxDenQiVS2YCGH2nHi88emnFC8/7IeU2d1zogUXEGcHAiztVXBfZcQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Usuario\\Documents\\GitHub\\Trabajos-Practicos\\TP_Integrador\\CarritoDeCompras\\CarritoDeCompras\\CarritoDeCompras.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Usuario\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

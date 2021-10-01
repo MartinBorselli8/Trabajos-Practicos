@@ -9,15 +9,15 @@ namespace CarritoDeCompras
     class Descuento
     {
         private string codigo;
-        private double porcentaje;
+        private int porcentaje;
 
-        public Descuento(string codigo, double porcentaje)
+        public Descuento(string codigo, int porcentaje)
         {
             this.Codigo = codigo;
             this.Porcentaje = porcentaje;
         }
 
         public string Codigo { get => codigo; set => codigo = value; }
-        public double Porcentaje { get => porcentaje; set => porcentaje = value; }
+        public int Porcentaje { get => porcentaje; set => porcentaje = value; }
     }
 }

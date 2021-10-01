@@ -10,8 +10,6 @@ namespace CarritoDeCompras
     {
         private int codigoProducto;
         private string descripcion;
-        
-        
         private decimal precioUnitario;
         private int cantidadActual;
         private bool disponible;
@@ -24,7 +22,6 @@ namespace CarritoDeCompras
             this.precioUnitario = precioUnitario;
             this.cantidadActual = cantidadActual;
             this.disponible = disponible;
-            
         }
 
         public int CodigoProducto { get => codigoProducto; set => codigoProducto = value; }
@@ -52,7 +49,7 @@ namespace CarritoDeCompras
 
         public void setEstado()
         {
-            if (cantidadActual <= 0)
+            if (cantidadActual < 1)
             {
                 Disponible = false;
             }

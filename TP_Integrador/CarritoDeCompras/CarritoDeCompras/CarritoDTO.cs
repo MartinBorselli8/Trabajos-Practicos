@@ -8,10 +8,10 @@ namespace CarritoDeCompras
 {
     class CarritoDTO
     {
-        private DateTime fecha;
+        private string fecha;
         private decimal importeTotal;
 
-        public DateTime Fecha { get => fecha; set => fecha = value; }
+        public string Fecha { get => fecha; set => fecha = value; }
         public decimal ImporteTotal { get => importeTotal; set => importeTotal = value; }
     }
 }

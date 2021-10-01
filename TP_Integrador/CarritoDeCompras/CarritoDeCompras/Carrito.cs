@@ -21,7 +21,7 @@ namespace CarritoDeCompras
         public int CantidadDeProductos { get => cantidadDeProductos; set => cantidadDeProductos = value; }
         internal List<ItemProducto> ListadoProductosSeleccionados { get => listadoProductosSeleccionados; set => listadoProductosSeleccionados = value; }
 
-        public void calcularMontoTotal()
+        public void calcularMontoTotal(int porcentaje)
         {
             decimal total = 0;
 
@@ -30,8 +30,14 @@ namespace CarritoDeCompras
                 total = total + i.PrecioPorCantidad;
             }
 
-            ImporteTotal = total;
-            
+            if (porcentaje != 0)
+            {
+                ImporteTotal = total - ((total * porcentaje) / 100);
+            }
+            else
+            {
+                ImporteTotal = total;
+            }
         }
 
         public void agregarProductoAlCarro(Producto producto, int cantidad)

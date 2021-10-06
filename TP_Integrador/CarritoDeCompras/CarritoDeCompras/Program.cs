@@ -80,6 +80,7 @@ namespace CarritoDeCompras
             MostrarEncabezado();
             carrito1.mostrarProductosSeleccionados();
             Console.WriteLine("Si desea ingresar un codigo de descuento, presione 0.");
+            Console.WriteLine("Si no, ingrese cualquier otro numero.");
             op = Convert.ToInt32(Console.ReadLine());
             if (op == 0)
             {
@@ -125,7 +126,6 @@ namespace CarritoDeCompras
                 repositorioProductos.mostrarTodosLosProductos();
                 Console.WriteLine("\nIngrese el codigo del producto que desea: ");
                 cod = Convert.ToInt32(Console.ReadLine());
-
                 Console.WriteLine("\nIngrese la cantidad que desea: ");
                 cantidadDeseada = Convert.ToInt32(Console.ReadLine());
 
@@ -172,7 +172,6 @@ namespace CarritoDeCompras
                     }
                     
                 }
-
                 if (bandera)
                 {
                     carrito1.ListadoProductosSeleccionados.RemoveAt(indice);

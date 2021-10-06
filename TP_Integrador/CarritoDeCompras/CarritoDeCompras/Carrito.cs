@@ -42,19 +42,42 @@ namespace CarritoDeCompras
 
         public void agregarProductoAlCarro(Producto producto, int cantidad)
         {
+            bool bandera = false;
+            ItemProducto itemAUX = new ItemProducto(0, 0, null);
             decimal TotalPorProducto;
             if (producto.CantidadActual >= cantidad)
             {
                 if (producto.Disponible == true)
                 {
-                    TotalPorProducto = producto.PrecioUnitario * cantidad;
-                    ItemProducto newItem = new ItemProducto(cantidad, TotalPorProducto, producto);
-                    CantidadDeProductos = CantidadDeProductos + cantidad;
-                    ListadoProductosSeleccionados.Add(newItem);
-                    producto.CantidadActual = producto.CantidadActual - cantidad;
-                    producto.setEstado();
-                }
-                else
+                    foreach (ItemProducto i in ListadoProductosSeleccionados)
+                    {
+                        if (i.Producto == producto)
+                        {
+                            bandera = true;
+                            itemAUX=i;
+                        }
+                    }
+
+                    if (bandera)
+                    {
+                        itemAUX.Cantidad = itemAUX.Cantidad + cantidad;
+                        TotalPorProducto = producto.PrecioUnitario * cantidad;
+                        itemAUX.PrecioPorCantidad = producto.PrecioUnitario * itemAUX.Cantidad;
+                        CantidadDeProductos = CantidadDeProductos + cantidad;
+                        producto.CantidadActual = producto.CantidadActual - cantidad;
+                        producto.setEstado();
+                    }
+                    else
+                    {
+                        TotalPorProducto = producto.PrecioUnitario * cantidad;
+                        ItemProducto newItem = new ItemProducto(cantidad, TotalPorProducto, producto);
+                        CantidadDeProductos = CantidadDeProductos + cantidad;
+                        ListadoProductosSeleccionados.Add(newItem);
+                        producto.CantidadActual = producto.CantidadActual - cantidad;
+                        producto.setEstado();
+                    }
+    
+                }else
                 {
                     Console.WriteLine("El producto no esta disponible");
                 }
@@ -64,8 +87,9 @@ namespace CarritoDeCompras
                 Console.WriteLine("No hay stock suficiente, cantidad restante:" + producto.CantidadActual);
                 Console.ReadKey();
             }
-        }
 
+
+        }
         public bool quitarProductoDelCarro(ItemProducto item, int cantidad)
         {
             
@@ -77,7 +101,7 @@ namespace CarritoDeCompras
                     i.Cantidad = i.Cantidad - cantidad;
                     i.PrecioPorCantidad = i.Producto.PrecioUnitario * i.Cantidad;
                     cantidadDeProductos = cantidadDeProductos - cantidad;
-                    if (i.Cantidad == 0)
+                    if (i.Cantidad <= 0)
                     {
                         ban = true;
                     }

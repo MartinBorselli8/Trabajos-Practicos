@@ -103,7 +103,7 @@ namespace CarritoDeCompras
             void CargarProductosAlSistema()
             {
                 string listaSerializada;
-                TextReader ListaDeProductos = new StreamReader("jsonProductosTeamTres");
+                TextReader ListaDeProductos = new StreamReader("ListadoProductos.txt");
                 listaSerializada = ListaDeProductos.ReadLine();
                 repositorioProductos.ListadoDeProductos = JsonSerializer.Deserialize<List<Producto>>(listaSerializada);
             }

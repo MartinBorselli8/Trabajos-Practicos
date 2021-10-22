@@ -6,7 +6,7 @@ namespace CarritoDeCompras.Tests
     public class DisponibilidadDeProducto
     {
         [Fact]
-        public void ValidarStock()
+        public void ValidarDisponibilidadDeProducto()
         {
             //Arrange
             Producto producto1 = new Producto(1, "Mate", 500m, 0, true);

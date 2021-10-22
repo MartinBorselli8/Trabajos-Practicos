@@ -14,7 +14,7 @@ namespace CarritoDeCompras
         private int cantidadActual;
         private bool disponible;
         
-
+        
         public Producto(int codigoProducto, string descripcion, decimal precioUnitario, int cantidadActual, bool disponible)
         {
             this.codigoProducto = codigoProducto;

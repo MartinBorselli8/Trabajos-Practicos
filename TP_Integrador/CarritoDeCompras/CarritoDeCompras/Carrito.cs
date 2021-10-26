@@ -7,7 +7,7 @@ using System.Text.Json;
 
 namespace CarritoDeCompras
 {
-    class Carrito
+    public class Carrito
     {
         private int nroOrden;
         private DateTime fechaOrden;
@@ -21,7 +21,7 @@ namespace CarritoDeCompras
         public int CantidadDeProductos { get => cantidadDeProductos; set => cantidadDeProductos = value; }
         internal List<ItemProducto> ListadoProductosSeleccionados { get => listadoProductosSeleccionados; set => listadoProductosSeleccionados = value; }
 
-        public void calcularMontoTotal(int porcentaje)
+        public void calcularImporteTotal(int porcentaje)
         {
             decimal total = 0;
 

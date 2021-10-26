@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarritoDeCompras
 {
-    class Descuento
+    public class Descuento
     {
         private string codigo;
         private int porcentaje;

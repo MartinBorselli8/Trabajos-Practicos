@@ -103,7 +103,7 @@ namespace CarritoDeCompras
             void CargarProductosAlSistema()
             {
                 string listaSerializada;
-                TextReader ListaDeProductos = new StreamReader("ListadoProductos.txt");
+                TextReader ListaDeProductos = new StreamReader("ListadoProductos");
                 listaSerializada = ListaDeProductos.ReadLine();
                 repositorioProductos.ListadoDeProductos = JsonSerializer.Deserialize<List<Producto>>(listaSerializada);
             }
@@ -142,7 +142,7 @@ namespace CarritoDeCompras
                 MostrarEncabezado();
                 Console.WriteLine("Cantidad de articulos seleccionados (" + carrito1.CantidadDeProductos + ") \n");
                 carrito1.mostrarProductosSeleccionados();
-                carrito1.calcularMontoTotal(0);
+                carrito1.calcularImporteTotal(0);
                 Console.WriteLine("TOTAL: $" + carrito1.ImporteTotal);
 
             }
@@ -180,7 +180,7 @@ namespace CarritoDeCompras
                 MostrarEncabezado();
                 Console.WriteLine("Cantidad de articulos seleccionados (" + carrito1.CantidadDeProductos + ") \n");
                 carrito1.mostrarProductosSeleccionados();
-                carrito1.calcularMontoTotal(0);
+                carrito1.calcularImporteTotal(0);
                 Console.WriteLine("TOTAL: $" + carrito1.ImporteTotal);
 
             }
@@ -207,7 +207,7 @@ namespace CarritoDeCompras
 
                 if (ban)
                 {
-                    carrito1.calcularMontoTotal(porcentaje);
+                    carrito1.calcularImporteTotal(porcentaje);
                 }
                 else
                 {

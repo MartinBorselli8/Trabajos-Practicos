@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarritoDeCompras
 {
-    class ItemProducto
+    public class ItemProducto
     {
         private int cantidad;
         private decimal precioPorCantidad;

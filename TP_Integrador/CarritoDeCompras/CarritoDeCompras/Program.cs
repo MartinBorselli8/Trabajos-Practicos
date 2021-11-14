@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
@@ -8,12 +9,12 @@ namespace CarritoDeCompras
 {
     class Program
     {
-        
+
         static void Main(string[] args)
         {
             int op, cantidadDeseada, cod;
             Random random = new Random();
-             
+
             RepositorioProductos repositorioProductos = new RepositorioProductos();
             RepositorioDescuentos repositorioDescuentos = new RepositorioDescuentos();
             Carrito carrito1 = new Carrito();
@@ -21,9 +22,10 @@ namespace CarritoDeCompras
             carrito1.CantidadDeProductos = 0;
             carrito1.NroOrden = random.Next(1, 100);
 
-            InstanciasPrevias();
+            GenerarCuponesDeDescuentos();
             CargarProductosAlSistema();
-
+            DefinirProductosEnOferta();
+            
             Console.Clear();
             MostrarEncabezado();
             if (carrito1.CantidadDeProductos == 0)
@@ -85,7 +87,7 @@ namespace CarritoDeCompras
             if (op == 0)
             {
                 AplicarDescuento();
-            }  
+            }
             Console.Clear();
             MostrarEncabezado();
             carrito1.mostrarProductosSeleccionados();
@@ -103,20 +105,21 @@ namespace CarritoDeCompras
             void CargarProductosAlSistema()
             {
                 string listaSerializada;
-                TextReader ListaDeProductos = new StreamReader("ListadoProductos");
+                TextReader ListaDeProductos = new StreamReader("jsonProductosTeamTres");
                 listaSerializada = ListaDeProductos.ReadLine();
-                repositorioProductos.ListadoDeProductos = JsonSerializer.Deserialize<List<Producto>>(listaSerializada);
+                repositorioProductos.ListadoDeProductos = JsonConvert.DeserializeObject<List<Producto>>(listaSerializada);
             }
 
-            //Esta funcion se encarga de hacer instancias a varias clases para probar el codigo.
-            void InstanciasPrevias()
-            {
             
+            void GenerarCuponesDeDescuentos()
+            {
+
                 Descuento descuento1 = new Descuento("LeoMATEoli", 10);
                 Descuento descuento2 = new Descuento("MateAmargo", 15);
 
                 repositorioDescuentos.agregarDescuento(descuento1);
                 repositorioDescuentos.agregarDescuento(descuento2);
+
             }
             //Esta funcion se encarga del caso de uso "Agregar producto".
             void AgregarProducto()
@@ -150,9 +153,9 @@ namespace CarritoDeCompras
             //Esta funcion se encarga del caso de uso "Quitar producto".
             void QuitarProducto()
             {
-                bool bandera=false;
-                int indice=0, contador=-1;
-                
+                bool bandera = false;
+                int indice = 0, contador = -1;
+
                 Console.Clear();
                 MostrarEncabezado();
                 carrito1.mostrarProductosSeleccionados();
@@ -167,10 +170,10 @@ namespace CarritoDeCompras
                     contador++;
                     if (a.Producto.CodigoProducto == cod)
                     {
-                        bandera=carrito1.quitarProductoDelCarro(a, cantidadDeseada);
+                        bandera = carrito1.quitarProductoDelCarro(a, cantidadDeseada);
                         indice = contador;
                     }
-                    
+
                 }
                 if (bandera)
                 {
@@ -184,6 +187,23 @@ namespace CarritoDeCompras
                 Console.WriteLine("TOTAL: $" + carrito1.ImporteTotal);
 
             }
+
+            void DefinirProductosEnOferta()
+            {
+
+                foreach (Producto producto in repositorioProductos.ListadoDeProductos)
+                {
+                    if (producto.FechaInicioOferta < DateTime.Now && DateTime.Now < producto.FechaCierreOferta)
+                    {
+                        producto.EstaEnOferta = true;
+                    }
+                    else
+                    {
+                        producto.EstaEnOferta = false;
+                    }
+                }
+            }
+
 
             void AplicarDescuento()
             {
@@ -221,7 +241,7 @@ namespace CarritoDeCompras
                 carritoDTO.Fecha = Convert.ToString(carrito1.FechaOrden);
                 carritoDTO.ImporteTotal = carrito1.ImporteTotal;
                 TextWriter CarritoSerializado = new StreamWriter("carrito.txt");
-                CarritoSerializado.WriteLine(JsonSerializer.Serialize(carritoDTO));
+                CarritoSerializado.WriteLine(JsonConvert.SerializeObject(carritoDTO));
                 CarritoSerializado.Close();
             }
         }

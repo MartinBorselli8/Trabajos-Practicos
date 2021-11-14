@@ -23,7 +23,7 @@ namespace CarritoDeCompras
 
         public void calcularImporteTotal(int porcentaje)
         {
-            decimal total = 0;
+            decimal? total = 0;
 
             foreach (ItemProducto i in ListadoProductosSeleccionados)
             {
@@ -32,11 +32,11 @@ namespace CarritoDeCompras
 
             if (porcentaje != 0)
             {
-                ImporteTotal = total - ((total * porcentaje) / 100);
+                ImporteTotal = Convert.ToDecimal(total - ((total * porcentaje) / 100));
             }
             else
             {
-                ImporteTotal = total;
+                ImporteTotal = Convert.ToDecimal(total);
             }
         }
 
@@ -44,7 +44,7 @@ namespace CarritoDeCompras
         {
             bool bandera = false;
             ItemProducto itemAUX = new ItemProducto(0, 0, null);
-            decimal TotalPorProducto;
+           
             if (producto.CantidadActual >= cantidad)
             {
                 if (producto.Disponible == true)
@@ -61,16 +61,14 @@ namespace CarritoDeCompras
                     if (bandera)
                     {
                         itemAUX.Cantidad = itemAUX.Cantidad + cantidad;
-                        TotalPorProducto = producto.PrecioUnitario * cantidad;
-                        itemAUX.PrecioPorCantidad = producto.PrecioUnitario * itemAUX.Cantidad;
+                        itemAUX.PrecioPorCantidad = PrecioDeVenta(producto, itemAUX.Cantidad);
                         CantidadDeProductos = CantidadDeProductos + cantidad;
                         producto.CantidadActual = producto.CantidadActual - cantidad;
                         producto.setEstado();
                     }
                     else
                     {
-                        TotalPorProducto = producto.PrecioUnitario * cantidad;
-                        ItemProducto newItem = new ItemProducto(cantidad, TotalPorProducto, producto);
+                        ItemProducto newItem = new ItemProducto(cantidad, PrecioDeVenta(producto, cantidad), producto);
                         CantidadDeProductos = CantidadDeProductos + cantidad;
                         ListadoProductosSeleccionados.Add(newItem);
                         producto.CantidadActual = producto.CantidadActual - cantidad;
@@ -99,7 +97,7 @@ namespace CarritoDeCompras
                 if (i == item)
                 {
                     i.Cantidad = i.Cantidad - cantidad;
-                    i.PrecioPorCantidad = i.Producto.PrecioUnitario * i.Cantidad;
+                    i.PrecioPorCantidad = PrecioDeVenta(i.Producto, i.Cantidad);
                     cantidadDeProductos = cantidadDeProductos - cantidad;
                     if (i.Cantidad <= 0)
                     {
@@ -115,15 +113,131 @@ namespace CarritoDeCompras
             return (ban);
         }
         
+        public decimal PrecioDeVenta(Producto producto, int cantidad)
+        {
+            if (cantidad == 1)
+            {
+                if (producto.EstaEnOferta)
+                {
+                    return Convert.ToDecimal(((producto.PrecioUnitario) - (producto.PrecioUnitario * producto.DescuentoPorOferta)) * cantidad);
+                }
+                else
+                {
+                    return producto.PrecioUnitario * cantidad;
+                }
+            }
+            else if (2 <= cantidad && cantidad <= 5)
+            {
+                decimal precioRangoDosACinco = Convert.ToDecimal(producto.PrecioUnitario - (producto.PrecioUnitario * producto.DescuentoEntreDosYCincoUnidades));
+                if (producto.EstaEnOferta)
+                {
+                    return Convert.ToDecimal((precioRangoDosACinco - (precioRangoDosACinco * producto.DescuentoPorOferta)) * cantidad);
+                }
+                else
+                {
+                    return Convert.ToDecimal(precioRangoDosACinco * cantidad);
+                }
+            }
+            else if (6 <= cantidad && cantidad <= 10)
+            {
+                decimal? precioRangoSeisADiez = producto.PrecioUnitario - (producto.PrecioUnitario * producto.DescuentoEntreSeisYDiezUnidades);
+                if (producto.EstaEnOferta)
+                {
+                    return Convert.ToDecimal((precioRangoSeisADiez - (precioRangoSeisADiez * producto.DescuentoPorOferta)) * cantidad);
+                }
+                else
+                {
+                    return Convert.ToDecimal(precioRangoSeisADiez * cantidad);
+                }
+            }
+            else if (10 <= cantidad)
+            {
+                decimal? precioRangoDiezOMas = producto.PrecioUnitario - (producto.PrecioUnitario * producto.DescuentoEntreSeisYDiezUnidades);
+                if (producto.EstaEnOferta)
+                {
+                    return Convert.ToDecimal((precioRangoDiezOMas - (precioRangoDiezOMas * producto.DescuentoPorOferta)) * cantidad);
+                }
+                else
+                {
+                    return Convert.ToDecimal(precioRangoDiezOMas * cantidad);
+                }
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         public void mostrarProductosSeleccionados()
         {
             
             foreach(ItemProducto i in listadoProductosSeleccionados)
             {
                 i.Producto.getDatos();
-                Console.WriteLine("Cantidad seleccionada: " + i.Cantidad);
-                Console.WriteLine("Precio: $" + i.PrecioPorCantidad);
-                Console.WriteLine("---------------------\n");
+                if (i.Producto.EstaEnOferta)
+                {
+                    if (i.Cantidad == 1) {
+                        Console.WriteLine("Cantidad seleccionada: " + i.Cantidad);
+                        Console.WriteLine("Porcentaje de descuento por Oferta: " + (i.Producto.DescuentoPorOferta * 100) + "%.");
+                        Console.WriteLine("Precio por unidad: $" + i.PrecioPorCantidad);
+                        Console.WriteLine("---------------------\n");
+                    }else if (2 <= i.Cantidad && i.Cantidad <= 5)
+                    {
+                        Console.WriteLine("Cantidad seleccionada: " + i.Cantidad);
+                        Console.WriteLine("Porcentaje de descuento por Oferta: " + (i.Producto.DescuentoPorOferta * 100) + "%.");
+                        Console.WriteLine("Porcentaje de descuento por cantidad seleccionada: " + (i.Producto.DescuentoEntreDosYCincoUnidades * 100) + "%.");
+                        Console.WriteLine("Precio por unidad: " + i.PrecioPorCantidad / i.Cantidad);
+                        Console.WriteLine("---------------------\n");
+                    }else if (6 <= i.Cantidad && i.Cantidad < 10)
+                    {
+                        Console.WriteLine("Cantidad seleccionada: " + i.Cantidad);
+                        Console.WriteLine("Porcentaje de descuento por Oferta: " + (i.Producto.DescuentoPorOferta * 100) + "%.");
+                        Console.WriteLine("Porcentaje de descuento por cantidad seleccionada: " + (i.Producto.DescuentoEntreSeisYDiezUnidades * 100)  + "%.");
+                        Console.WriteLine("Precio por unidad: " + i.PrecioPorCantidad / i.Cantidad);
+                        Console.WriteLine("---------------------\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Cantidad seleccionada: " + i.Cantidad);
+                        Console.WriteLine("Porcentaje de descuento por Oferta: " + (i.Producto.DescuentoPorOferta * 100) + "%.");
+                        Console.WriteLine("Porcentaje de descuento por cantidad seleccionada: " + (i.Producto.DescuentoMasDeDiezUnidades * 100) + "%.");
+                        Console.WriteLine("Precio por unidad: " + i.PrecioPorCantidad / i.Cantidad);
+                        Console.WriteLine("---------------------\n");
+                    }
+
+                }
+                else
+                {
+                    
+                    if (i.Cantidad == 1)
+                    {
+                        Console.WriteLine("Cantidad seleccionada: " + i.Cantidad);
+                        Console.WriteLine("Precio por unidad: $" + i.PrecioPorCantidad);
+                        Console.WriteLine("---------------------\n");
+                    }
+                    else if (2 <= i.Cantidad && i.Cantidad <= 5)
+                    {
+                        Console.WriteLine("Cantidad seleccionada: " + i.Cantidad);
+                        Console.WriteLine("Porcentaje de descuento por cantidad seleccionada: " + (i.Producto.DescuentoEntreDosYCincoUnidades * 100) + "%.");
+                        Console.WriteLine("Precio por unidad: " + i.PrecioPorCantidad / i.Cantidad);
+                        Console.WriteLine("---------------------\n");
+                    }
+                    else if (6 <= i.Cantidad && i.Cantidad < 10)
+                    {
+                        Console.WriteLine("Cantidad seleccionada: " + i.Cantidad);
+                        Console.WriteLine("Porcentaje de descuento por cantidad seleccionada: " + (i.Producto.DescuentoEntreSeisYDiezUnidades * 100) + "%.");
+                        Console.WriteLine("Precio por unidad: " + i.PrecioPorCantidad / i.Cantidad);
+                        Console.WriteLine("---------------------\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Cantidad seleccionada: " + i.Cantidad);
+                        Console.WriteLine("Porcentaje de descuento por cantidad seleccionada: " + (i.Producto.DescuentoMasDeDiezUnidades * 100) + "%.");
+                        Console.WriteLine("Precio por unidad: " + i.PrecioPorCantidad / i.Cantidad);
+                        Console.WriteLine("---------------------\n");
+                    }
+                }
+                
             }
 
         }
